@@ -18,6 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+
+	/**
+	 * xml данные
+	 */
+
 	private String getXmlContent() {
 		return "<note>\n" +
 				"<to>Tove</to>\n" +
@@ -50,11 +55,16 @@ public class Main {
 		System.out.println();
 	}
 
+	/**
+	 * Создание запроса
+	 * @param someXmlContent
+	 */
+
 	private void makeRequest(String someXmlContent) {
 		try {
 			HttpClient httpclient = HttpClients.createDefault();
 			HttpPost httppost = new HttpPost("http://localhost:9000/xml-to-yaml");
-			List<NameValuePair> params = new ArrayList<NameValuePair>(2);
+			List<NameValuePair> params = new ArrayList<>(2);
 			params.add(new BasicNameValuePair("xmlbody", someXmlContent));
 			httppost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
 			HttpResponse response = httpclient.execute(httppost);
